@@ -1,0 +1,30 @@
+{
+  "name": "thought-network-api",
+  "version": "1.0.0",
+  "description": "Backend api for a social media site where users record and react to thoughts.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/outofthepark/social-network-api.git"
+  },
+  "keywords": [
+    "mongodb",
+    "express",
+    "mongoose"
+  ],
+  "author": "outofthepark",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/outofthepark/social-network-api/issues"
+  },
+  "homepage": "https://github.com/outofthepark/social-network-api#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jest": "^27.0.6",
+    "mongoose": "^6.0.0"
+  }
+}
