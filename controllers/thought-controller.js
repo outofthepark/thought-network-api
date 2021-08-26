@@ -47,7 +47,12 @@ const thoughtController = {
                 { _id: params.userId },
                 { $push: { thoughts: _id } },
                 { new: true }
-            );
+            )
+            .populate({
+                path: 'thoughts',
+                select: '-__v'
+            })
+            .select('-__v');
         })
         .then(dbUserData => {
             if (!dbUserData) {
@@ -87,9 +92,14 @@ const thoughtController = {
             }
             return User.findOneAndUpdate(
               { _id: params.userId },
-              { $pull: { thoughts: params.thoughtId } },
+              { $pull: { thoughts: _id } },
               { new: true }
-            );
+            )
+            .populate({
+                path: 'thoughts',
+                select: '-__v'
+            })
+            .select('-__v');
           })
           .then(dbUserData => {
             if (!dbUserData) {
@@ -110,6 +120,11 @@ const thoughtController = {
             { $push: { reactions: body } },
             { new: true }
         )
+        .populate({
+            path: 'reactions',
+            select: '-__v'
+        })
+        .select('-__v')
         .then(dbThoughtData => {
             if (!dbThoughtData) {
                 res.status(404).json({ message: 'No thought found with this id!' });
@@ -129,6 +144,11 @@ const thoughtController = {
             { $pull: { reactions: { reactionId: params.reactionId } } },
             { new: true }
         )
+        .populate({
+            path: 'reactions',
+            select: '-__v'
+        })
+        .select('-__v')
         .then(dbUserData => res.json(dbUserData))
         .catch(err => {
             res.json(err);
